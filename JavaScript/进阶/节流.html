@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 600px;
+            width: 800px;
+            background-color: springgreen;
+            color: black;
+            font-size: 40px;
+            margin: 100px auto;
+            line-height: 600px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div>1</div>
+
+    <script>
+
+        let num = 0;
+
+        let div = document.querySelector('div')
+
+        function numAdd() {
+            num++
+            div.innerText = num
+        }
+
+        function throttle(fn,time) {
+            let Itimer
+
+            return function () {
+                if(!Itimer){
+                    
+                    Itimer = setTimeout(function () {
+                        fn()
+                        Itimer = null
+                    },time)
+                    
+                }
+                   
+            }
+
+        }
+
+        div.addEventListener('mousemove',throttle(numAdd,500))
+
+    </script>
+    
+</body>
+</html>

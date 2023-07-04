@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .container{
+            width: 600px;
+            height: 500px;
+            margin: 100px auto;
+            overflow: auto;
+        }
+        .container .info{
+            width: 300px;
+            height: 40px;
+            position: sticky;
+            top: 0px;
+            left: 250px;
+            transform: translateX(-100px);
+            outline: none;
+            z-index: 1;
+        }
+
+        .container ul{
+            width: 300px;
+            list-style: none;
+            margin-left: 300px;
+            transform: translateX(-150px);
+            margin-top: 50px;
+        }
+
+        .container ul li {
+            width: 300px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid gray;
+            background-color: antiquewhite;
+            transition: 0.5s linear;
+            position: relative;
+        }
+
+        .container ul li:not(.finish):hover{
+            background-color: aquamarine;
+        }
+
+        .container ul li:not(:last-child){
+            border-bottom: none;
+        }
+
+        .container ul li input{
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 25px;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .container ul li:not(:first-child) span{
+            position: absolute;
+            right: 0px;
+            width: 250px;
+            text-overflow:ellipsis;
+        }
+
+        .container ul li:first-child span:first-child{
+            width: 80px;
+            text-align: center;
+            border-right: 1px solid gray;
+            float: left;
+        }
+
+        .container ul li:first-child span:last-child{
+            width: 200px;
+        }
+
+        .container ul .finish{
+            background-color: rgb(151, 150, 150);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <input type="text" class="info" placeholder="请添加事件"> 
+
+        <br>
+
+        <ul>
+            <li><span>是否完成</span><span>事件内容</span></li>
+        </ul>
+    </div>
+
+    <script>
+       let inp = document.querySelector('input')
+       let ul = document.querySelector('ul')
+       let arr = new Array();
+
+       (() => {
+            if(localStorage.getItem('info') != null){
+                    arr = JSON.parse(localStorage.getItem('info'))
+                    arr.forEach(e => {
+                    addNode(e,false)
+                })
+            }
+       })();
+
+       function alength() {
+        
+            const arrlength = JSON.parse(localStorage.getItem('info')) 
+
+            if(arrlength == null){
+
+                return 0
+
+            }else{
+
+                return arrlength.length 
+
+            }
+       }
+     
+       function addNode(value,isAdd) {
+
+            let li = document.createElement('li')
+
+            if(isAdd){
+                arr.push(value)
+
+                li.dataset.id = alength()
+
+                localStorage.setItem('info',JSON.stringify(arr))
+                
+            }else{
+                
+                li.dataset.id = value.thingId
+        
+            }
+            
+            if(value.isFinish){
+                li.innerHTML = `
+                    <input type="checkbox" disabled checked data-id="${value.thingId}"><span>${value.thingInfo}</span> `
+                li.classList.add('finish')
+            }else{
+                li.innerHTML = `
+                    <input type="checkbox" data-id="${value.thingId}"><span>${value.thingInfo}</span> `
+            }
+
+            ul.appendChild(li)
+
+       }
+
+       inp.addEventListener('keydown',function (e) {
+            if(e.code == "Enter" && inp.value.trim() != ''){
+
+                let info = {
+                    thingId:alength(),
+                    isFinish:false,
+                    thingInfo:inp.value
+                }
+
+                inp.value = ''
+                    addNode(info,true)
+                }
+
+       })
+
+       ul.addEventListener('click',(e) => {
+            if(e.target.tagName == "INPUT"){
+
+                document.querySelectorAll('.container ul li').forEach(element => {
+                    if(element.dataset.id == e.target.dataset.id){
+                        element.classList.add('finish')
+                        e.target.disabled = true
+                        arr[e.target.dataset.id].isFinish = true
+                        localStorage.setItem('info',JSON.stringify(arr))
+                    }
+                })
+            }
+       })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4127919_ydpp5fa9gts.css">
+    <style>
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .container{
+            width: 500px;
+            height: 400px;
+            box-shadow: 0px 0px 5px black;
+            position: relative;
+            margin: 100px auto;
+            border-radius: 10px;
+        }
+
+        .container .nav{
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
+            border-bottom: 1px solid #949494;    
+        }
+
+        .container .nav .texts {
+            width: 100px;
+            height: 70px;
+            margin: auto;
+            margin-left: 50px;
+            transform: translate(-50%,-50%);
+            font-size: 30px;
+        }
+
+        .container .nav .texts .title , .container .nav .texts:hover .iconfont{
+            transition: 0.3s linear;
+        }
+
+        .container .nav .title:hover  ,.container .nav .iconfont:hover {
+            transform: scale(1.3);
+            cursor: pointer;
+            color: rgb(245, 136, 3);
+        }
+
+        .container .nav .texts .iconfont{
+            font-size: 30px;
+            display: none;
+            margin-left: 50px;
+        }
+
+        .container .nav ul{
+            list-style: none;
+            float:right;
+        }
+        .container .nav ul li{
+            float: left;
+            margin-right: 20px;
+            transition: 0.2s linear;
+        }
+        .container .nav ul li:hover{
+            transform: scale(1.4);
+            color:rgb(255, 197, 73);
+            cursor: pointer;
+        }
+
+        .container .img{
+            width: 400px;
+            height: 100%;
+            margin: 50px;
+            box-sizing: border-box;
+            display: flex;
+            font-size: 70px;
+            justify-content: space-around;
+        }
+
+        .container .img .bimg{
+            width: 300px;
+            height: 200px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('../static/city.png');
+            transition: 0.2s linear;
+        }
+
+        .container .img .bimg:hover{
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+
+            <span class="texts">
+                <span class="title">每日特价</span>
+                <i class="iconfont icon-home1"></i>
+            </span>
+
+            <ul>
+                <li>精选</li>
+                <li>美食</li>
+                <li>百货</li>
+                <li>个护</li>
+                <li>预告</li>
+            </ul>
+
+        </div>
+
+        <div class="img">
+     
+            <span class="title">
+                    城
+                    <br>
+                    市
+            </span>
+
+            <div class="bimg">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let texts = document.querySelector('.texts')
+        let title = document.querySelector('.title')
+        let ititle = document.querySelector('.img .title')
+        let iconfont = document.querySelector('.iconfont')
+        let li = document.querySelectorAll('ul li')
+        let bimg = document.querySelector('.img .bimg')
+        let TIShow = true
+
+        const arr = [{
+            name:'城市',
+            img:'city'
+        },{
+            name:'风景',
+            img:'beauty'
+        },{
+            name:'雪山',
+            img:'mountain'
+        },{
+            name:'海洋',
+            img:'sea'
+        },{
+            name:'天空',
+            img:'theSky'
+        }]
+
+        function showOrHidden() {
+            if(!TIShow){
+                title.style.display = 'inline-block'
+                iconfont.style.display = 'none'
+            }else{
+                title.style.display = 'none'
+                iconfont.style.display = 'inline-block'
+            }
+            TIShow = !TIShow
+        }
+
+        texts.addEventListener('click',showOrHidden)
+
+        texts.addEventListener('click',showOrHidden)
+
+        for(let i=0;i<5;i++){
+            li[i].addEventListener('click',function () {
+                ititle.innerHTML = `${arr[i].name.charAt(0)}<br>${arr[i].name.charAt(1)}`
+                bimg.style.backgroundImage = `url('../static/${arr[i].img}.png')`
+            })
+        }
+        
+
+    </script>
+</body>
+</html>

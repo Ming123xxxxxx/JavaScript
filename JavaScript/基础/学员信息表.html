@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container h2{
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .container input{
+            outline: none;
+            border: 1px solid #b1d1fd;
+            border-radius: 15px;
+        }
+
+        .container form{
+            width: 900px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 50px;
+        }
+
+        .container form input{
+            width: 100px;
+            height: 25px;
+        }
+        
+        .container form select{
+            width: 100px;
+            height: 25px;
+            text-align: center;
+            margin-right: 10px;
+            border: 1px solid #b1d1fd;
+            outline: none;
+        }
+
+        .container form .sub{
+            background-color: #1d3f85;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .container table{
+            width: 900px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 50px;
+            background-color: #d7e8ff;
+            text-align: center;
+        }
+
+        .container table th{
+            height: 50px;
+            border: 1px solid #dbdbdb;
+        }
+
+        .container table th:not(:first-child){
+            border-left: 0px;
+        }
+
+        .container table tbody tr{
+            height: 40px;
+            background-color: white;
+            border: 1px solid #dbdbdb;
+            box-sizing: border-box;
+        }
+
+
+        .container table tbody tr td{
+            border: 1px solid #dbdbdb;
+            border-top: none;
+        }
+
+        .container table tbody tr td:not(:first-child){
+            border-left: none;
+        }
+
+        .container table tbody tr button{
+            width: 100px;
+            height: 30px;
+            background-color: #f56c6c;
+            border-radius: 15px;
+            color: white;
+            font-size: 15px;
+            border: none;
+            box-shadow: 0px 0px 3px black;
+            transition: 0.2s linear;
+        }
+
+        .container table tbody tr button:hover{
+            background-color: rgb(252, 55, 55);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h2>新增学员</h2>
+
+        <form>
+            <label for="name">姓名:</label>
+            <input id="name">
+            <label for="age">年龄:</label>
+            <input id="age" type="number" min="18" max="100">
+            性别:<select class="sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            <label for="salary">薪资:</label>
+            <input id="salary" type="number">
+            就业城市：
+            <select class="address">
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="深圳">深圳</option>
+                <option value="广州">广州</option>
+                <option value="武汉">武汉</option>
+                <option value="重庆">重庆</option>
+            </select>
+
+            <input type="reset" value="登入" class="sub">
+        </form>
+
+        <h2>就业榜</h2>
+
+        <table class="tab" cellspacing="0">
+            <thead>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>薪资</th>
+                <th>就业城市</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        let tbody = document.querySelector('.tab tbody')
+        let sub = document.querySelector('.sub')
+        let num = 0
+
+        const arr = new Array()
+
+        //添加成员信息
+        sub.addEventListener("click",function (e) {
+
+            let stuInfo = {
+                stulId:'',
+                stuName:'',
+                stuAge:'',
+                stuSex:'',
+                stuSalary:'',
+                stuAddress:''
+            }
+
+            stuInfo.stulId = parseInt(Math.random() * (90000000 + 10000000))
+
+            stuInfo.stuName = document.querySelector('#name').value
+            stuInfo.stuAge = document.querySelector('#age').value
+            stuInfo.stuSex = document.querySelector('.sex').value
+            stuInfo.stuSalary = document.querySelector('#salary').value
+            stuInfo.stuAddress = document.querySelector('.address').value
+
+            let tr = document.createElement('tr')
+            tr.innerHTML = 
+            `
+            <td>${stuInfo.stulId}</td>
+            <td>${stuInfo.stuName}</td>
+            <td>${stuInfo.stuAge}</td>
+            <td>${stuInfo.stuSex}</td>
+            <td>${stuInfo.stuSalary}</td>
+            <td>${stuInfo.stuAddress}</td>
+            <td><button data-id="${stuInfo.stulId}">删除</button></td>
+            `
+            arr.push(stuInfo.stulId)
+            num++
+            tbody.appendChild(tr)
+        })
+
+        //删除成员
+        tbody.addEventListener('click',function (e) {
+            
+            if(e.target.tagName == 'BUTTON'){
+                arr.forEach((item,index) => {
+                    if(item == e.target.dataset.id){
+                        tbody.removeChild(tbody.children[index])
+                        arr.splice(index,1)
+                    }
+                })
+
+            }
+        })
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+
+        let lis = document.querySelectorAll('ul li')
+
+        //获得日期对象
+        const date = new Date('2020-08-08 8:30:31')
+
+        lis[0].innerHTML = `今年为年:`+date.getFullYear()
+        lis[1].innerHTML = `现在为几月:`+ (date.getMonth() + 1)
+        lis[2].innerHTML = `今天是几号:`+ (date.getDate())
+        lis[3].innerHTML = `今天星期几:`+ (date.getDay())
+        lis[4].innerHTML = `现在为几点:`+ (date.getHours())
+        lis[5].innerHTML = `现在为几点:`+ (date.getHours())
+        lis[6].innerHTML = `现在为几分:`+ (date.getMinutes())
+        lis[7].innerHTML = `现在为几秒:`+ (date.getSeconds())
+
+    </script>
+</body>
+</html>

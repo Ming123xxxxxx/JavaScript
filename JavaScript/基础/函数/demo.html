@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //秒转化为时分秒
+        // let num = prompt("请输入要转化的时间,单位秒")
+
+        // num = Number(num)
+
+        // let hour = parseInt(num / 3600)
+
+        // let minute = parseInt((num - hour*3600) / 60)
+
+        // let second = num - hour*3600 - minute*60
+
+        // document.write(`
+        // <h2>${num} 转换为${hour}小时${minute}分钟${second}秒</h2>
+        // `)
+
+        setInterval(function() {
+
+            document.body.innerHTML = '';
+            
+            let currentTime = new Date().toLocaleString()
+
+            document.write(`
+            <h2>${currentTime}</h2>
+            `)
+        },1000)
+
+    </script>
+</body>
+</html>

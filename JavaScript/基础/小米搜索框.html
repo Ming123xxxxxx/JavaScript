@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        div{
+            margin-left: 500px;
+        }
+        input{
+            width: 200px;
+            height: 40px;
+        }
+        ul{
+            background-color: antiquewhite;
+            width: 200px;
+            list-style: none;
+            border: 1px solid black;
+            display: none;
+        }
+        ul li{
+            height: 70px;
+            line-height: 70px;
+            border-bottom: 1px solid black;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        ul li:last-child{
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <input type="text" placeholder="请输入内容">
+        <br>
+        <ul>
+            <li>红米Note12</li>
+            <li>IQOONeo8</li>
+            <li>红米K50</li>
+            <li>VivoX80</li>
+            <li>华为P60</li>
+        </ul>
+    </div>
+
+    <script>
+
+        function show() {
+            document.querySelector('ul').style.display = "inline-block"
+        }
+
+        function hidden() {
+            document.querySelector('ul').style.display = "none"
+        }
+
+        document.querySelector('input').addEventListener('focus',show)
+        document.querySelector('input').addEventListener('blur',hidden)
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*使用对象方式时*/
+        //  const Person = {
+        //     head:1,
+        //     eyes:2
+        //  }
+        // function Man() {
+        //     sex = '男'
+        //  }
+
+        //  function Woman() {
+        //     sex = '女'
+        //  }
+
+        //  Man.prototype = Person
+        //  Man.prototype.constructor = Man
+
+        //  Woman.prototype = Person
+        //  Woman.prototype.constructor = Woman
+
+        //  console.log("---------修改Person前----------");
+        //  console.log(new Man())
+        //  console.log(new Woman())
+
+        //  Person.eyes = 4
+        //  console.log("---------修改Person后----------");
+        //  console.log(new Man())
+        //  console.log(new Woman())
+
+        /*使用构造函数方式*/
+        function Person(){
+            this.head = 1,
+            this.eyes = 2
+        }
+
+        function Man() {
+   
+        }
+
+         function Woman() {
+
+        }
+
+        Man.prototype = new Person()
+        Man.prototype.constructor = Man
+
+        Woman.prototype = new Person()
+        Woman.prototype.constructor = Woman
+        
+        
+         console.log("---------修改Person前----------");
+         console.log(new Man()) //{head:1,eyes:2}
+         console.log(new Woman()) //{head:1,eyes:2}
+
+         Person.eyes = 4
+         console.log("---------修改Person后,修改Person中的值不会再影响继承Perosn的对象----------");
+         console.log(new Man()) //{head:1,eyes:2}
+         console.log(new Woman()) //{head:1,eyes:2}
+
+
+    </script>
+
+</body>
+</html>

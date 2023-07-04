@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .boxboder{
+            width: 500px;
+            height: 300px;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            margin:auto;
+            margin-top: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+        .texts{
+            width: 500px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .boxboder div{
+            width: 50px;
+            background-color: aqua;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let arr = new Array(10);
+        arr[0]=prompt("第一季度经济")
+        arr[1]=prompt("第二季度经济")
+        arr[2]=prompt("第三季度经济")
+        arr[3]=prompt("第四季度经济")
+
+        document.write(
+            `<div class="boxboder">
+                    <div style="height:${arr[0]}px">${arr[0]}</div>
+                    <div style="height:${arr[1]}px">${arr[1]}</div>
+                    <div style="height:${arr[2]}px">${arr[2]}</div>
+                    <div style="height:${arr[3]}px">${arr[3]}</div>
+            </div>
+            <div class="texts">
+                <div>第一季度</div>
+                <div>第二季度</div>
+                <div>第三季度</div>
+                <div>第四季度</div>
+            </div>`
+        )
+
+    </script>
+</body>
+</html>

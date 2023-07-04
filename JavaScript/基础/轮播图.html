@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4127919_c07nl4s0p8t.css">
+    <style>
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .container{
+            width: 700px;
+            height: 500px;
+            background-image: url(../static/beauty.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 100px auto;
+            transition: 0.s linear;
+            position: relative;
+        }
+
+        .container button{
+            width: 60px;
+            height: 100%;
+            background-color: white;
+            opacity: 0.2;
+            display: none;
+            box-shadow: 0px 0px 20px black;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        .container .rbtn{
+            position: absolute;
+            right: 0px;
+        }
+
+
+        .container ul li{
+            width: 15px;
+            height: 15px;
+            border:2px solid white;
+            box-sizing: border-box;
+            border-radius: 100%;
+            transition: 0.2s linear;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .container ul li:hover{
+            background-color: white;
+        }
+
+        .container ul {
+            width: 200px;
+            height: 500px;
+            position: absolute;
+            top:480px;
+            transform: translateY(-20px) translateX(230px);
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .container i{
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <button class="lbtn"><i class="iconfont icon-xiaoyuhao"></i></button>
+        <button class="rbtn"><i class="iconfont icon-dayuhao"></i></button>
+
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        const arr = ['beauty','city','mountain','sea','theSky']
+        let img = document.querySelector(".container")
+
+        let li = document.querySelectorAll('ul li')
+        
+        let num = -1
+
+        function changeImg() {
+            if(img.style.backgroundImage == `url(../static/${arr[num]}.png)`){
+
+                changeImg()
+            }else{
+
+                if(num>3){
+                    num = 0
+                }else{
+                    num++
+                }
+
+                li.forEach(arr => {
+                    arr.style.backgroundColor = ''
+                });
+
+                li[num].style.backgroundColor = 'white'
+
+                img.style.backgroundImage = `url(../static/${arr[num]}.png)`
+            }
+        }
+
+        function clickImg(value) {
+
+            console.log("@@@@")
+
+            if(value>=5){
+                value = 0
+            }
+
+            if(num<0){
+                num = 4
+            }
+
+            img.style.backgroundImage == `url(../static/${arr[value]}.png)`
+
+        }
+
+        let n = setInterval(changeImg,1000)
+
+        document.querySelector('.lbtn').addEventListener('click',function() {
+
+            num--
+
+            if(num<0){
+                num = 4
+            }
+
+            img.style.backgroundImage = `url(../static/${arr[num]}.png)`
+
+        })
+        document.querySelector('.rbtn').addEventListener('click',function() {
+
+            num++
+
+            if(num>=5){
+                num = 0
+            }
+
+            img.style.backgroundImage = `url(../static/${arr[num]}.png)`
+
+        })
+
+        img.addEventListener('mouseenter',function(){
+            clearInterval(n)
+            document.querySelector('.lbtn').style.display = 'inline-block'
+            document.querySelector('.rbtn').style.display = 'inline-block'
+
+        })
+        img.addEventListener('mouseleave',function() {
+            n = setInterval(changeImg,1000)
+            document.querySelector('.lbtn').style.display = 'none'
+            document.querySelector('.rbtn').style.display = 'none'
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 300px;
+            background-color: aqua;
+            margin: 100px auto;
+            border-radius: 30px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 30px;
+        }
+        span{
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        这是一个广告,还有<span>10</span>秒关闭
+    </div>
+
+    <script>
+
+        //倒计时
+        let countdown = 9
+
+        //间隔函数
+        let cd =  setInterval(() => {
+            if(countdown == 1){
+                clearInterval(cd)
+             }
+            document.querySelector('span').innerText = countdown
+            countdown--
+        }, 1000);
+
+        //延时函数
+        setTimeout(() => {
+            document.querySelector('div').style.display = 'none'
+        }, 10000);
+    </script>
+
+</body>
+</html>

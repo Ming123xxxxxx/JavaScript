@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /*匿名函数的声明*/
+        let fu = function(value){
+            console.log("Hello,World"+value)
+        }
+
+        /*匿名函数的调用*/
+        fu(1)
+        fu(2)
+        fu(3);
+        
+        /*匿名函数立即执行方式一*/
+        (function(){
+            console.log("Hello,World")
+        })();
+        /*匿名函数立即执行方式二*/
+        (function(){
+            console.log("Hello,World2")
+        }())
+    </script>
+    
+</body>
+</html>

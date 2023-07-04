@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4127919_tgb8sm43oqc.css">
+    <style>
+
+        *{
+            margin: 0px;
+            padding: 0px;
+            color: wheat;
+        }
+
+        .container{
+            width: 200px;
+            height: 350px;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 100px auto;
+        }
+        .container .header{
+            font-size: 1200;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+        }
+        .iconfont{
+            color: white;
+            font-weight: 500;
+            font-size: 150px;
+        }
+        .container .countdown{
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .container  p{
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .container .countdown div{
+            width: 45px;
+            height: 45px;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            line-height: 45px;
+        }
+
+        .container .countdown span{
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 class="header">京东秒杀</h1>
+        <i class="iconfont icon-shandian"></i>
+
+        <p>20:00场距离结束</p>
+        <div class="countdown">
+            <div class="hour"></div><span>:</span>
+            <div class="minute"></div><span>:</span>
+            <div class="second"></div>
+        </div>
+    </div>
+
+    <script>
+
+        setInterval(function fun() {
+            let hours = document.querySelector('.hour')
+            let minute = document.querySelector('.minute')
+            let second = document.querySelector('.second')
+
+            let curYear = new Date().getFullYear()
+            let curMonth = new Date().getMonth() + 1
+            let curDay = new Date().getDate()
+            
+            const currentTime = new Date().getTime()
+            const endTime = new Date(`${curYear}-${curMonth}-${curDay} 20:00:00`).getTime()
+         
+            let Interval = endTime - currentTime
+
+            let ihours = parseInt(Interval /1000/60/60)
+
+            let iminute = parseInt((Interval - ihours*1000 * 60 * 60) /1000 /60)
+
+            let iseconds = parseInt((Interval -ihours*1000*60*60 - iminute*1000*60)/1000)
+
+            hours.innerText = ihours
+            minute.innerText = iminute
+            second.innerText = iseconds
+        }, 1000);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container{
+            width: 800px;
+            height: 2000px;
+            background-color: antiquewhite;
+            margin: auto;
+        }
+        .nav{
+            position: sticky;
+            top: 200px;
+            left: 100px;
+            float: left;
+            display: none;
+        }
+        .nav ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        .nav ul li{
+            width: 50px;
+            height: 50px;
+            font-size: 15px;
+            text-align: center;
+            line-height: 25px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background-color: skyblue;
+        }
+        .nav ul li:hover{
+            background-color: aquamarine;
+            color: white;
+        }
+        .nav ul li:not(:first-child){
+            border-top: 0;
+        }
+        .nav ul li:last-child{
+            line-height: 50px;
+        }
+ 
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <ul>
+            <li>新鲜<br>好物</li>
+            <li>人气<br>推荐</li>
+            <li>热门<br>品牌</li>
+            <li>最新<br>专题</li>
+            <li><a href="#">顶部</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+
+    </div>
+
+    <script>
+        window.addEventListener('scroll',function() {
+
+            if(document.documentElement.scrollTop >= 200){
+                document.querySelector('.nav').style.display = 'block'
+            }else{
+                document.querySelector('.nav').style.display = 'none'
+
+            }
+        })
+    </script>
+    
+</body>
+</html>

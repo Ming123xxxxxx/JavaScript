@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        table{
+            border: 1px solid #e8eaed;
+            margin: 100px auto;
+            text-align: center;
+        }
+        table thead{
+            background-color: #7ac9fd;
+        }
+    </style>
+</head>
+<body>
+
+    <table width="500px" border="1" cellspacing="0">
+        <thead>
+            <th><input type="checkbox" class="All"> 全选</th>
+            <th rowspan="3">商品</th>
+            <th>上架</th>
+            <th rowspan="2">价格</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="goods one"></td>
+                <td>小米手机</td>
+                <td>小米</td>
+                <td>￥1999</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="goods two"></td>
+                <td>VivoX90</td>
+                <td>Vivo</td>
+                <td>￥4999</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="goods three"></td>
+                <td>华为P60</td>
+                <td>华为</td>
+                <td>￥6999</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let all = document.querySelector('.All')
+        let goods = document.querySelectorAll('.goods')
+
+        all.addEventListener('click',function(){
+            document.querySelectorAll('input').forEach(e => {
+                e.checked = all.checked
+            })
+        })
+
+        let isAll = false
+
+        goods.forEach(e => {
+            e.addEventListener('click',function () {
+                for(let i=0;i<goods.length;i++){
+                    if(goods[i].checked){
+                        isAll = true
+                    }else{
+                        isAll = false
+                        break;
+                    }
+                }
+
+                if(isAll){
+                    all.checked = true
+                }else{
+                    all.checked = false
+                }
+            })
+
+            isAll = false
+        })
+
+       
+
+
+       
+
+    </script>
+    
+</body>
+</html>

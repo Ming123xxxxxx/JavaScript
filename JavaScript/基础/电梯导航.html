@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        div:not(.nav){
+            width: 80%;
+            height: 600px;
+            background-color: aqua;
+            margin: 50px auto;
+            font-size: 100px;
+            line-height: 500px;
+            text-align: center;
+        }
+
+        .nav{
+            position: fixed;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            display: none;
+        }
+
+        .nav ul{
+            list-style: none;
+        }
+
+        .nav ul li{
+            width: 60px;
+            height: 60px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 30px;
+            background-color: bisque;
+            transition: 0.2s linear;
+        }
+
+        .nav ul li:hover{
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .nav ul li:not(:first-child){
+            border-top: none;
+        }
+
+        .nav ul li:first-child{
+            border-radius: 5px 5px 0 0 ;
+        }
+        .nav ul li:last-child{
+            border-radius: 0 0 5px 5px;
+        }
+
+        .nav ul .active{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="index">首页</div>
+    <div class="type freshThing" data-id="0">新鲜好物</div>
+    <div class="type commend" data-id="1">人气推荐</div>
+    <div class="type brand" data-id="2">热门品牌</div>
+    <div class="type topic" data-id="3">最新专区</div>
+
+    <div class="nav"> 
+        <ul>
+            <li data-id=".freshThing">新鲜<br>好物</li>
+            <li data-id=".commend">人气<br>推荐</li>
+            <li data-id=".brand">热门<br>品牌</li>
+            <li data-id=".topic">最新<br>专区</li>
+            <li data-id="0">回到<br>顶部</li>
+        </ul>
+    </div>
+
+    <script>
+
+        let nav = document.querySelector('.nav')
+
+        let ul = document.querySelector('.nav ul')
+        let lis = document.querySelectorAll(`.nav ul li`)
+
+        let type = document.querySelectorAll('.type')
+
+        function removeActive(){
+                document.querySelectorAll('ul li').forEach(e => {
+                        e.classList.remove('active')
+                })
+        }
+
+        window.addEventListener('scroll',function() {
+
+            let dh = document.documentElement.scrollTop
+
+            if(dh<=450){
+                removeActive()
+            }
+
+            if(dh >=500){
+                nav.style.display = 'block'
+            }else{
+                nav.style.display = 'none'
+            }
+
+            type.forEach(e => {
+
+                let top = e.offsetTop - 300
+                let bot = e.offsetTop
+                if(top<= dh && dh<=bot && e.dataset.id != 4){
+
+                    removeActive()
+
+                    lis[e.dataset.id].classList.add('active')
+                }
+
+            })
+
+        })
+
+        ul.addEventListener('click',function(e){
+            
+            let dataId = e.target.attributes['data-id'].value
+
+            if(e.target.tagName === "LI"){
+                if(dataId == 0){
+                    window.scrollTo(0,0)
+                    removeActive()
+                }else{
+                    window.scrollTo(0,document.querySelector(dataId).offsetTop)
+
+                    removeActive()
+
+                    e.target.classList.toggle('active')
+                }
+            }
+
+        })
+
+    </script>
+
+</body>
+</html>

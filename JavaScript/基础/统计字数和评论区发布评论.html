@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container{
+            margin-left:400px;
+            margin-top: 400px;
+        }
+
+        input{
+            width: 500px;
+            height: 40px;
+            transition: 0.2s linear;
+            border-radius: 10px;
+        }
+        button{
+            width: 100px;
+            height: 42px;
+            background-color: #49b5e9;
+            border: none;
+            box-shadow: 0px 0px 5px black;
+            border-radius: 5px;
+            transition: 0.2s linear;
+        }
+        .texts{
+            margin-left: 440px;
+            display: none;
+        }
+        ul{
+            font-size: 20px;
+            color: black;
+        }
+        ul span{
+            color: rgb(248, 154, 46);
+            margin-left: 440px;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <div class="container">
+       <pre><input type="text" maxlength="200" placeholder="发一条友善的评论">  <button>发布</button></pre>
+       <div class="texts"><span class="nums">0</span>/200字</div>
+    </div>
+    <ul class="comment">
+    </ul>
+
+    <script>
+
+
+        const arr = new Array();
+
+        let input = document.querySelector('input')
+        let uls = document.querySelector('.comment')
+
+
+        function ifoucs() {
+            document.querySelector('input').style.height = '70px'
+            document.querySelector('button').style.height = '70px'
+            document.querySelector('.texts').style.display = 'block'
+        }
+
+        function ihidden() {
+            if(document.querySelector('input').value.length == 0){
+                document.querySelector('input').style.height = '40px'
+                document.querySelector('button').style.height = '40px'
+                document.querySelector('.texts').style.display = 'none'
+            }
+            document.querySelector('.nums').innerText = document.querySelector('input').value.length
+        }
+
+        input.addEventListener('focus',ifoucs)
+        input.addEventListener('blur',ihidden)
+        input.addEventListener('input',ihidden)
+        input.addEventListener('input',ifoucs)
+        input.addEventListener('keydown',function (e) {
+            if(e.code == 'Enter' && input.value.trim() != ''){
+
+                arr.unshift(input.value)
+
+                /*清空ul里的内容*/
+                uls.innerHTML = ''
+
+                arr.forEach(e => {
+
+                    /*在ul中追加内容*/
+                    uls.innerHTML +=
+                    `
+                        <li>
+                            <span>清风徐来:</span>${e}  
+                        </li>
+                    `
+                    
+                })
+                    
+
+                document.querySelector('.nums').innerText = 0
+                input.value = ''
+             
+            }
+
+            console.log("@@:"+arr)
+        })
+        
+    </script>
+
+</body>
+</html>
